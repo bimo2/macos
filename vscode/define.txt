@@ -1,0 +1,33 @@
+error      #ff1235
+warning    #ffee00
+debug      #1ca676
+shadow     #000000
+
+error.d      #ff1235
+warning.d    #ffee00
+debug.d      #1ca676
+shadow.d     #000000
+
+---- FACEBOOK ----
+
+facebook               Facebook
+facebook.text          #0e1116
+facebook.subtext       #90949c
+facebook.background    #f5f6f7
+facebook.overlay       #0e1116
+facebook.accent        #1877f2
+facebook.subdued       #616771
+facebook.added         #1877f2
+facebook.deleted       #ff1235
+facebook.untracked     #1ca658
+
+facebook.d               Facebook After Hours
+facebook.text.d          #ffffff
+facebook.subtext.d       #e9ebee
+facebook.background.d    #0e1116
+facebook.overlay.d       #ffffff
+facebook.accent.d        #1877f2
+facebook.subdued.d       #616771
+facebook.added.d         #1877f2
+facebook.deleted.d       #ff1235
+facebook.untracked.d     #1ca658
