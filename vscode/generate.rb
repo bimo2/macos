@@ -281,7 +281,7 @@ def map_colors(theme, tokens)
     "editorCursor.foreground" => lambda { color_value.call("overlay") },
     "editor.selectionBackground" => lambda { with_alpha(color_value.call("overlay"), "40") },
     "editor.selectionForeground" => lambda { color_value.call("text") },
-    "editor.inactiveSelectionBackground" => lambda { none },
+    "editor.inactiveSelectionBackground" => lambda { with_alpha(color_value.call("overlay"), "40") },
     "editor.selectionHighlightBackground" => lambda { none },
     "editor.selectionHighlightBorder" => lambda { color_value.call("overlay") },
     "editor.wordHighlightBackground" => lambda { with_alpha(color_value.call("overlay"), "20") },
@@ -359,7 +359,7 @@ def map_colors(theme, tokens)
     "editorBracketPairGuide.background4" => lambda { with_alpha(color_value.call("overlay"), "10") },
     "editorBracketPairGuide.background5" => lambda { with_alpha(color_value.call("overlay"), "10") },
     "editorBracketPairGuide.background6" => lambda { with_alpha(color_value.call("overlay"), "10") },
-    "editor.foldBackground" => lambda { with_alpha(color_value.call("overlay"), "0a") },
+    "editor.foldBackground" => lambda { with_alpha(color_value.call("overlay"), "05") },
     "editorOverviewRuler.background" => lambda { color_value.call("background") },
     "editorOverviewRuler.border" => lambda { with_alpha(color_value.call("overlay"), "20") },
     "editorOverviewRuler.findMatchForeground" => lambda { color_value.call("accent") },
@@ -904,10 +904,10 @@ def map_colors(theme, tokens)
     # "charts.yellow" => lambda { },
     # "charts.orange" => lambda { },
     # "charts.green" => lambda { },
-    # "charts.purple" => lambda { }
+    # "charts.purple" => lambda { },
 
     # https://code.visualstudio.com/api/references/theme-color#ports-colors
-    # "ports.iconRunningProcessForeground" => lambda { }
+    # "ports.iconRunningProcessForeground" => lambda { },
 
     # https://code.visualstudio.com/api/references/theme-color#comments-view-colors
     # "commentsView.resolvedIcon" => lambda { },
@@ -923,10 +923,373 @@ def map_colors(theme, tokens)
     # "scm.historyItemAdditionsForeground" => lambda { },
     # "scm.historyItemDeletionsForeground" => lambda { },
     # "scm.historyItemStatisticsBorder" => lambda { },
-    # "scm.historyItemSelectedStatisticsBorder" => lambda { }
+    # "scm.historyItemSelectedStatisticsBorder" => lambda { },
   }
 
   options.transform_values(&:call)
+end
+
+def map_token_colors(theme, tokens)
+  color_value = lambda do |token|
+    token += ".d" if $scheme == "dark"
+    value = tokens["#{theme}.#{token}"]
+    value ||= tokens[token]
+    value
+  end
+
+  options = [
+    {
+      "scope" => [
+        "comment",
+        "punctuation.definition.comment",
+        "string.comment",
+      ],
+      "settings" => {
+        "foreground" => lambda { with_alpha(color_value.call("text"), "66") },
+      },
+    },
+    {
+      "scope" => [
+        "constant",
+        "entity.name.constant",
+        "variable.other.constant",
+        "variable.other.enummember",
+        "variable.language",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => [
+        "entity",
+        "entity.name",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-2") },
+      },
+    },
+    {
+      "scope" => "variable.parameter.function",
+      "settings" => {
+        "foreground" => lambda { color_value.call("text") },
+      },
+    },
+    {
+      "scope" => "entity.name.tag",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-4") },
+      },
+    },
+    {
+      "scope" => "keyword",
+      "settings" => {
+        "foreground" => lambda { with_brightness(color_value.call("code-1"), 0, 32) },
+      },
+    },
+    {
+      "scope" => [
+        "storage",
+        "storage.type",
+      ],
+      "settings" => {
+        "foreground" => lambda { with_brightness(color_value.call("code-1"), 0, 32) },
+      },
+    },
+    {
+      "scope" => [
+        "storage.modifier.package",
+        "storage.modifier.import",
+        "storage.type.java",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("text") },
+      },
+    },
+    {
+      "scope" => [
+        "string",
+        "punctuation.definition.string",
+        "string punctuation.section.embedded source",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-5") },
+      },
+    },
+    {
+      "scope" => "support",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => "meta.property-name",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => "variable",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-4") },
+      },
+    },
+    {
+      "scope" => "variable.other",
+      "settings" => {
+        "foreground" => lambda { color_value.call("text") },
+      },
+    },
+    {
+      "scope" => "invalid.broken",
+      "settings" => {
+        "fontStyle" => "italic",
+        "foreground" => lambda { color_value.call("error") },
+      },
+    },
+    {
+      "scope" => "invalid.deprecated",
+      "settings" => {
+        "fontStyle" => "italic",
+        "foreground" => lambda { color_value.call("error") },
+      },
+    },
+    {
+      "scope" => "invalid.illegal",
+      "settings" => {
+        "fontStyle" => "italic",
+        "foreground" => lambda { color_value.call("error") },
+      },
+    },
+    {
+      "scope" => "invalid.unimplemented",
+      "settings" => {
+        "fontStyle" => "italic",
+        "foreground" => lambda { color_value.call("error") },
+      },
+    },
+    {
+      "scope" => "message.error",
+      "settings" => {
+        "foreground" => lambda { color_value.call("error") },
+      },
+    },
+    {
+      "scope" => "string variable",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => [
+        "source.regexp",
+        "string.regexp",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-5") },
+      },
+    },
+    {
+      "scope" => [
+        "string.regexp.character-class",
+        "string.regexp constant.character.escape",
+        "string.regexp source.ruby.embedded",
+        "string.regexp string.regexp.arbitrary-repitition",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-5") },
+      },
+    },
+    {
+      "scope" => "string.regexp constant.character.escape",
+      "settings" => {
+        "fontStyle" => "bold",
+        "foreground" => lambda { color_value.call("code-4") },
+      },
+    },
+    {
+      "scope" => "support.constant",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => "support.variable",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => "meta.module-reference",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => "punctuation.definition.list.begin.markdown",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-5") },
+      },
+    },
+    {
+      "scope" => [
+        "markup.heading",
+        "markup.heading entity.name",
+      ],
+      "settings" => {
+        "fontStyle" => "bold",
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => "markup.quote",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-4") },
+      },
+    },
+    {
+      "scope" => "markup.italic",
+      "settings" => {
+        "fontStyle" => "italic",
+        "foreground" => lambda { color_value.call("text") },
+      },
+    },
+    {
+      "scope" => "markup.bold",
+      "settings" => {
+        "fontStyle" => "bold",
+        "foreground" => lambda { color_value.call("text") },
+      }
+    },
+    {
+      "scope" => "markup.underline",
+      "settings" => {
+        "fontStyle" => "underline"
+      },
+    },
+    {
+      "scope" => "markup.strikethrough",
+      "settings" => {
+        "fontStyle" => "strikethrough"
+      },
+    },
+    {
+      "scope" => "markup.inline.raw",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      }
+    },
+    {
+      "scope" => [
+        "markup.deleted",
+        "meta.diff.header.from-file",
+        "punctuation.definition.deleted",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("error") },
+      },
+    },
+    {
+      "scope" => [
+        "markup.inserted",
+        "meta.diff.header.to-file",
+        "punctuation.definition.inserted",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-4") },
+      }
+    },
+    {
+      "scope" => [
+        "markup.changed",
+        "punctuation.definition.changed",
+      ],
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-5") },
+      },
+    },
+    {
+      "scope" => [
+        "markup.ignored",
+        "markup.untracked"
+      ],
+      "settings" => {
+        "foreground" => lambda { with_alpha(color_value.call("text"), "66") },
+      },
+    },
+    {
+      "scope" => "meta.diff.range",
+      "settings" => {
+        "fontStyle" => "bold",
+        "foreground" => lambda { color_value.call("code-2") },
+      },
+    },
+    {
+      "scope" => "meta.diff.header",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => "meta.separator",
+      "settings" => {
+        "fontStyle" => "bold",
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    {
+      "scope" => "meta.output",
+      "settings" => {
+        "foreground" => lambda { color_value.call("code-3") },
+      },
+    },
+    # {
+    #   "scope" => [
+    #     "brackethighlighter.tag",
+    #     "brackethighlighter.curly",
+    #     "brackethighlighter.round",
+    #     "brackethighlighter.square",
+    #     "brackethighlighter.angle",
+    #     "brackethighlighter.quote"
+    #   ],
+    #   "settings" => {
+    #     "foreground" => "#d1d5da"
+    #   }
+    # },
+    {
+      "scope" => "brackethighlighter.unmatched",
+      "settings" => {
+        "foreground" => lambda { color_value.call("error") },
+      },
+    },
+    {
+      "scope" => [
+        "constant.other.reference.link",
+        "string.other.link",
+      ],
+      "settings" => {
+        "fontStyle" => "underline",
+        "foreground" => lambda { color_value.call("code-5") },
+      },
+    },
+  ]
+
+  hex_options = options.map do |option|
+    foreground = option["settings"]["foreground"]
+    background = option["settings"]["background"]
+
+    if foreground
+      option["settings"]["foreground"] = foreground.call
+    end
+
+    if background
+      option["settings"]["background"] = background.call
+    end
+
+    option
+  end
+
+  hex_options
 end
 
 def generate(txt_file)
@@ -943,7 +1306,7 @@ def generate(txt_file)
         "name" => tokens[scheme == "dark" ? "#{theme}.d" : theme],
         "colors" => map_colors(theme, tokens),
         "semanticHighlighting" => true,
-        "tokenColors" => [],
+        "tokenColors" => map_token_colors(theme, tokens),
       }
 
       file_name = scheme == "dark" ? "#{theme}-d" : theme
