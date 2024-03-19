@@ -1296,6 +1296,7 @@ def generate(txt_file)
   themes, tokens = read_define_txt(txt_file)
 
   themes.each do |theme|
+    variants = []
     folder = "dist/#{theme}"
     FileUtils.mkdir_p(folder) unless File.directory?(folder)
 
@@ -1314,7 +1315,41 @@ def generate(txt_file)
       File.open("#{folder}/#{file_name}.json", "w") do |file|
         file.write(JSON.pretty_generate(json))
       end
+
+      variants << {
+        label: json["name"],
+        uiTheme: scheme == "dark" ? "vs-dark" : "vs",
+        path: "./#{file_name}.json",
+      }
     end
+
+    package = {
+      name: "facebook-vscode-theme",
+      displayName: "Facebook Theme",
+      description: "Facebook theme for VS Code",
+      version: "1.0.0",
+      publisher: "typeof",
+      license: "MIT",
+      icon: "facebook.png",
+      galleryBanner: {
+        color: "#0E1116",
+        theme: "dark",
+      },
+      engines: {
+        vscode: "^1.60.0",
+      },
+      categories: ["Themes"],
+      keywords: ["theme", "facebook", "meta", "light", "dark"],
+      contributes: {
+        themes: variants,
+      },
+    }
+
+    File.open("#{folder}/package.json", "w") do |f|
+      f.write(JSON.pretty_generate(package))
+    end
+
+    FileUtils.cp("./assets/#{theme}.png", folder)
   end
 end
 

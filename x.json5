@@ -2,11 +2,15 @@
 _x: 0,
 project: 'macos',
 require: [
-  'ruby'
+  'ruby',
+  'npx'
 ],
 scripts: {
   vscode: {
     info: 'generate vscode themes',
-    run: 'cd vscode && rm -rf ./dist && ruby ./generate.rb'
+    run: [
+      'cd vscode && rm -rf ./dist && ruby ./generate.rb',
+      'cd vscode/dist/facebook && npx @vscode/vsce package'
+    ]
   }
 }
