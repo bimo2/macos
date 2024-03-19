@@ -1,5 +1,5 @@
 error      #ff1235
-warning    #ffee00
+warning    #bda84d
 debug      #1ca676
 shadow     #000000
 

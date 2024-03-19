@@ -127,14 +127,14 @@ def map_colors(theme, tokens)
     "inputOption.activeBorder" => lambda { color_value.call("overlay") },
     "inputOption.activeForeground" => lambda { color_value.call("text") },
     "inputOption.hoverBackground" => lambda { with_alpha(color_value.call("overlay"), "10") },
-    "inputValidation.errorBackground" => lambda { with_brightness(color_value.call("error"), -156) },
-    "inputValidation.errorForeground" => lambda { color_value.call("text") },
+    "inputValidation.errorBackground" => lambda { with_brightness(color_value.call("error"), 60, -156) },
+    "inputValidation.errorForeground" => lambda { "#ffffff" },
     "inputValidation.errorBorder" => lambda { color_value.call("error") },
-    "inputValidation.infoBackground" => lambda { with_brightness(color_value.call("accent"), -156) },
-    "inputValidation.infoForeground" => lambda { color_value.call("text") },
+    "inputValidation.infoBackground" => lambda { with_brightness(color_value.call("accent"), 60, -156) },
+    "inputValidation.infoForeground" => lambda { "#ffffff" },
     "inputValidation.infoBorder" => lambda { color_value.call("accent") },
-    "inputValidation.warningBackground" => lambda { with_brightness(color_value.call("warning"), -156) },
-    "inputValidation.warningForeground" => lambda { color_value.call("text") },
+    "inputValidation.warningBackground" => lambda { with_brightness(color_value.call("warning"), 60, -156) },
+    "inputValidation.warningForeground" => lambda { "#ffffff" },
     "inputValidation.warningBorder" => lambda { color_value.call("warning") },
 
     # https://code.visualstudio.com/api/references/theme-color#scrollbar-control
@@ -1292,6 +1292,12 @@ def map_token_colors(theme, tokens)
   hex_options
 end
 
+def readme(theme)
+"""
+![banner](https://raw.githubusercontent.com/bimo2/macos/main/vscode/assets/#{theme}-banner.png)
+""".strip
+end
+
 def generate(txt_file)
   themes, tokens = read_define_txt(txt_file)
 
@@ -1324,13 +1330,14 @@ def generate(txt_file)
     end
 
     package = {
-      name: "facebook-vscode-theme",
-      displayName: "Facebook Theme",
-      description: "Facebook theme for VS Code",
+      name: "#{theme}-vscode-theme",
+      displayName: "#{theme.capitalize} Theme",
+      description: "#{theme.capitalize} theme for VS Code",
+      repository: "github:bimo2/macos",
       version: "1.0.0",
-      publisher: "typeof",
+      publisher: "bimo2",
       license: "MIT",
-      icon: "facebook.png",
+      icon: "#{theme}.png",
       galleryBanner: {
         color: "#0E1116",
         theme: "dark",
@@ -1339,17 +1346,23 @@ def generate(txt_file)
         vscode: "^1.60.0",
       },
       categories: ["Themes"],
-      keywords: ["theme", "facebook", "meta", "light", "dark"],
+      keywords: ["theme", theme, "meta", "light", "dark"],
       contributes: {
         themes: variants,
       },
     }
 
-    File.open("#{folder}/package.json", "w") do |f|
-      f.write(JSON.pretty_generate(package))
+    File.open("#{folder}/package.json", "w") do |file|
+      file.write(JSON.pretty_generate(package))
+    end
+
+    File.open("#{folder}/README.md", "w") do |file|
+      file.write(readme(theme))
     end
 
     FileUtils.cp("./assets/#{theme}.png", folder)
+    FileUtils.cp("./assets/#{theme}-banner.png", folder)
+    FileUtils.cp("../LICENSE", folder)
   end
 end
 
