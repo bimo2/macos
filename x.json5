@@ -7,10 +7,11 @@ require: [
 ],
 scripts: {
   vscode: {
-    info: 'generate vscode themes',
+    info: 'generate vscode extensions',
     run: [
       'cd vscode && rm -rf ./dist && ruby ./generate.rb',
-      'cd vscode/dist/facebook && npx @vscode/vsce package'
+      'cd vscode/dist/facebook && npx @vscode/vsce package',
+      'cd vscode/dist/hackerrank && npx @vscode/vsce package'
     ]
   }
 }

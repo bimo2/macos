@@ -1292,6 +1292,39 @@ def map_token_colors(theme, tokens)
   hex_options
 end
 
+def icons(assets)
+  svg_value = lambda do |token|
+    token += "-d" if $scheme == "dark" && assets.include?("#{token}-d.svg")
+    "#{token}"
+  end
+
+  icons = {
+    "file" => lambda { svg_value.call("file") },
+    "folder" => lambda { svg_value.call("folder") },
+    "fileExtensions" => {
+      # JavaScript
+      "js" => lambda { svg_value.call("javascript") },
+      "es" => lambda { svg_value.call("javascript") },
+      "cjs" => lambda { svg_value.call("javascript") },
+      "mjs" => lambda { svg_value.call("javascript") },
+      "jsx" => lambda { svg_value.call("javascript") },
+      "min.js" => lambda { svg_value.call("javascript-2") },
+      "js.map" => lambda { svg_value.call("javascript-2") },
+    },
+    "fileNames" => { },
+  }
+
+  svg_icons = icons.transform_values do |value|
+    if value.is_a?(Hash)
+      value.transform_values(&:call)
+    else
+      value.call
+    end
+  end
+
+  svg_icons
+end
+
 def readme(theme)
 """
 ![banner](https://raw.githubusercontent.com/bimo2/macos/main/vscode/assets/#{theme}-banner.png)
@@ -1299,6 +1332,7 @@ def readme(theme)
 end
 
 def generate(txt_file)
+  # generate color themes
   themes, tokens = read_define_txt(txt_file)
 
   themes.each do |theme|
@@ -1360,10 +1394,74 @@ def generate(txt_file)
       file.write(readme(theme))
     end
 
-    FileUtils.cp("./assets/#{theme}.png", folder)
-    FileUtils.cp("./assets/#{theme}-banner.png", folder)
+    FileUtils.cp("assets/#{theme}.png", folder)
+    FileUtils.cp("assets/#{theme}-banner.png", folder)
     FileUtils.cp("../LICENSE", folder)
   end
+
+  # generate icon themes
+  source = File.expand_path('assets/icons')
+  assets = Dir.entries(source).reject { |svg| svg.start_with?('.') }
+
+  definitions = assets.each_with_object({}) do |asset, result|
+    token = asset.split('.')[0]
+    icon_path = "./icons/#{asset}"
+    result[token] = { iconPath: icon_path }
+  end
+
+  icon_theme = {}.merge(iconDefinitions: definitions)
+
+  %w(light dark).each do |scheme|
+    $scheme = scheme
+
+    if scheme == "dark"
+      icon_theme.merge!(icons(assets))
+    else
+      icon_theme[scheme] = icons(assets)
+    end
+  end
+
+  folder = 'dist/hackerrank'
+
+  FileUtils.mkdir_p(folder) unless Dir.exist?(folder)
+  File.write("#{folder}/hackerrank.json", JSON.pretty_generate(icon_theme))
+  FileUtils.cp_r("assets/icons", folder)
+
+  package = {
+    name: "hackerrank-vscode-icon-theme",
+    displayName: "HackerRank Icon Theme",
+    description: "HackerRank icon theme for VS Code",
+    repository: "github:bimo2/macos",
+    version: "1.0.0",
+    publisher: "bimo2",
+    license: "MIT",
+    icon: "hackerrank.png",
+    galleryBanner: {
+      color: "#0E1116",
+      theme: "dark",
+    },
+    engines: {
+      vscode: "^1.60.0",
+    },
+    categories: ["Themes"],
+    keywords: ["theme", "icons", "hackerrank", "light", "dark"],
+    contributes: {
+      iconThemes: [
+        {
+          id: "hackerrank",
+          label: "HackerRank Icon Theme",
+          path: "./hackerrank.json",
+        },
+      ],
+    },
+  }
+
+  File.open("#{folder}/package.json", "w") do |file|
+    file.write(JSON.pretty_generate(package))
+  end
+
+  FileUtils.cp("assets/hackerrank.png", folder)
+  FileUtils.cp("../LICENSE", folder)
 end
 
 generate("define.txt")
