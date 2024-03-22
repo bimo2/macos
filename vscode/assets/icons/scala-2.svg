@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>scala-2</title>
+    <g id="scala-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(5, 0)" fill="#3D4755" fill-rule="nonzero" id="Shape">
+            <path d="M0,24 C4.537,24 13.81,22.484 14.821,21 L14.821,15.271 C13.864,16.679 4.537,18.183 0,18.183 L0,24 Z M0,16.365 C4.537,16.365 13.81,14.849 14.821,13.365 L14.821,7.636 C13.864,9.044 4.537,10.548 0,10.548 L0,16.365 L0,16.365 Z M0,8.729 C4.537,8.729 13.81,7.213 14.821,5.729 L14.821,0 C13.864,1.408 4.537,2.912 0,2.912 L0,8.729 Z"></path>
+        </g>
+    </g>
+</svg>

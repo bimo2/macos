@@ -1298,27 +1298,274 @@ def icons(assets)
     "#{token}"
   end
 
+  jsconfig = lambda do |base, token|
+    {
+      ".#{base}".to_sym => svg_value.call(token),
+      ".#{base}rc".to_sym => svg_value.call(token),
+      ".#{base}rc.json".to_sym => svg_value.call(token),
+      ".#{base}rc.jsonc".to_sym => svg_value.call(token),
+      ".#{base}rc.yaml".to_sym => svg_value.call(token),
+      ".#{base}rc.yml".to_sym => svg_value.call(token),
+      ".#{base}rc.js".to_sym => svg_value.call(token),
+      ".#{base}.config.json".to_sym => svg_value.call(token),
+      ".#{base}.config.js".to_sym => svg_value.call(token),
+    }
+  end
+
   icons = {
     "file" => lambda { svg_value.call("file") },
     "folder" => lambda { svg_value.call("folder") },
     "fileExtensions" => {
-      # JavaScript
-      "js" => lambda { svg_value.call("javascript") },
-      "es" => lambda { svg_value.call("javascript") },
+      # apple
+      "pbxproj" => lambda { svg_value.call("apple") },
+      "plist" => lambda { svg_value.call("apple") },
+      "storyboard" => lambda { svg_value.call("apple") },
+      "xcbkptlist" => lambda { svg_value.call("apple") },
+      "xcconfig" => lambda { svg_value.call("apple") },
+      "xcframework" => lambda { svg_value.call("apple") },
+      "xcscheme" => lambda { svg_value.call("apple") },
+      "xcsettings" => lambda { svg_value.call("apple") },
+      "xcworkspacedata" => lambda { svg_value.call("apple") },
+
+      # binary
+      "a" => lambda { svg_value.call("binary") },
+      "db" => lambda { svg_value.call("binary") },
+      "dSYM" => lambda { svg_value.call("binary") },
+      "dylib" => lambda { svg_value.call("binary") },
+      "gz" => lambda { svg_value.call("binary") },
+      "ipa" => lambda { svg_value.call("binary") },
+      "node" => lambda { svg_value.call("binary") },
+      "o" => lambda { svg_value.call("binary") },
+      "tar" => lambda { svg_value.call("binary") },
+      "zip" => lambda { svg_value.call("binary") },
+
+      # c
+      "c" => lambda { svg_value.call("c") },
+
+      # c++
+      "cc" => lambda { svg_value.call("cplusplus") },
+      "cpp" => lambda { svg_value.call("cplusplus") },
+      "cxx" => lambda { svg_value.call("cplusplus") },
+
+      # cocoapods
+      "podspec" => lambda { svg_value.call("cocoapods") },
+
+      # css
+      "css" => lambda { svg_value.call("css") },
+      "module.css" => lambda { svg_value.call("css") },
+      "css.map" => lambda { svg_value.call("css") },
+      "min.css" => lambda { svg_value.call("css") },
+
+      # csv
+      "csv" => lambda { svg_value.call("csv") },
+
+      # docker
+      "dockerfile" => lambda { svg_value.call("docker") },
+
+      # google
+      "webmanifest" => lambda { svg_value.call("google") },
+
+      # graphql
+      "gql" => lambda { svg_value.call("graphql") },
+      "graphql" => lambda { svg_value.call("graphql") },
+
+      # header
+      "h" => lambda { svg_value.call("header") },
+      "hh" => lambda { svg_value.call("header") },
+      "hpp" => lambda { svg_value.call("header") },
+      "hxx" => lambda { svg_value.call("header") },
+
+      # html
+      "htm" => lambda { svg_value.call("html") },
+      "html" => lambda { svg_value.call("html") },
+      "xhtml" => lambda { svg_value.call("html") },
+
+      # image
+      "bmp" => lambda { svg_value.call("image") },
+      "gif" => lambda { svg_value.call("image") },
+      "heic" => lambda { svg_value.call("image") },
+      "ico" => lambda { svg_value.call("image") },
+      "jpg" => lambda { svg_value.call("image") },
+      "jpeg" => lambda { svg_value.call("image") },
+      "png" => lambda { svg_value.call("image") },
+      "svg" => lambda { svg_value.call("image") },
+      "tiff" => lambda { svg_value.call("image") },
+      "webp" => lambda { svg_value.call("image") },
+
+      # javascript
       "cjs" => lambda { svg_value.call("javascript") },
-      "mjs" => lambda { svg_value.call("javascript") },
+      "es" => lambda { svg_value.call("javascript") },
+      "js" => lambda { svg_value.call("javascript") },
       "jsx" => lambda { svg_value.call("javascript") },
-      "min.js" => lambda { svg_value.call("javascript-2") },
+      "mjs" => lambda { svg_value.call("javascript") },
       "js.map" => lambda { svg_value.call("javascript-2") },
+      "min.js" => lambda { svg_value.call("javascript-2") },
+
+      # json
+      "json" => lambda { svg_value.call("json") },
+      "jsonc" => lambda { svg_value.call("json") },
+      "json5" => lambda { svg_value.call("json") },
+
+      # markdown
+      "md" => lambda { svg_value.call("markdown") },
+      "mdx" => lambda { svg_value.call("markdown") },
+
+      # objective-c
+      "m" => lambda { svg_value.call("objectivec") },
+      "mm" => lambda { svg_value.call("objectivec") },
+
+      # pdf
+      "pdf" => lambda { svg_value.call("pdf") },
+
+      # prisma
+      "prisma" => lambda { svg_value.call("prisma") },
+
+      # ruby
+      "rb" => lambda { svg_value.call("ruby") },
+
+      # scala
+      "sc" => lambda { svg_value.call("scala") },
+      "scala" => lambda { svg_value.call("scala") },
+      "sbt" => lambda { svg_value.call("scala-2") },
+
+      # sql
+      "sql" => lambda { svg_value.call("sql") },
+
+      # swift
+      "swift" => lambda { svg_value.call("swift") },
+      "playground" => lambda { svg_value.call("swift-2") },
+
+      # typescript
+      "ts" => lambda { svg_value.call("typescript") },
+      "tsx" => lambda { svg_value.call("typescript") },
+      "d.ts" => lambda { svg_value.call("typescript-2") },
+
+      # vscode
+      "code-workspace" => lambda { svg_value.call("vscode") },
+      "vsix" => lambda { svg_value.call("vscode") },
+
+      # xml
+      "xml" => lambda { svg_value.call("xml") },
+
+      # yaml
+      "yaml" => lambda { svg_value.call("yaml") },
+      "yml" => lambda { svg_value.call("yaml") },
+
+      # zsh
+      "sh" => lambda { svg_value.call("zsh") },
+      "zsh" => lambda { svg_value.call("zsh") },
     },
-    "fileNames" => { },
+    "fileNames" => {
+      # babel
+      **jsconfig.call("babel", "babel"),
+
+      # buildkite
+      "buildkite.json" => lambda { svg_value.call("buildkite") },
+      "buildkite.jsonc" => lambda { svg_value.call("buildkite") },
+      "buildkite.yaml" => lambda { svg_value.call("buildkite") },
+      "buildkite.yml" => lambda { svg_value.call("buildkite") },
+      ".buildkite/pipeline.json" => lambda { svg_value.call("buildkite") },
+      ".buildkite/pipeline.jsonc" => lambda { svg_value.call("buildkite") },
+      ".buildkite/pipeline.yaml" => lambda { svg_value.call("buildkite") },
+      ".buildkite/pipeline.yml" => lambda { svg_value.call("buildkite") },
+
+      # circleci
+      ".circleci/config.yaml" => lambda { svg_value.call("circleci") },
+      ".circleci/config.yml" => lambda { svg_value.call("circleci") },
+
+      # cocoapods
+      "podfile" => lambda { svg_value.call("cocoapods") },
+      "podfile.lock" => lambda { svg_value.call("cocoapods") },
+
+      # codecov
+      "codecov.yaml" => lambda { svg_value.call("codecov") },
+      "codecov.yml" => lambda { svg_value.call("codecov") },
+
+      # deno
+      "deno.json" => lambda { svg_value.call("deno") },
+      "deno.jsonc" => lambda { svg_value.call("deno") },
+
+      # docker
+      ".dockerignore" => lambda { svg_value.call("docker") },
+      "dockerfile" => lambda { svg_value.call("docker") },
+      "docker-compose.yaml" => lambda { svg_value.call("docker") },
+      "docker-compose.yml" => lambda { svg_value.call("docker") },
+
+      # eslint
+      ".eslintignore" => lambda { svg_value.call("eslint") },
+      **jsconfig.call("eslint", "eslint"),
+
+      # github
+      ".gitattributes" => lambda { svg_value.call("github") },
+      ".gitconfig" => lambda { svg_value.call("github") },
+      ".gitignore" => lambda { svg_value.call("github") },
+      ".gitkeep" => lambda { svg_value.call("github") },
+      ".gitmodules" => lambda { svg_value.call("github") },
+
+      # google
+      ".gcloudignore" => lambda { svg_value.call("google") },
+      "manifest.json" => lambda { svg_value.call("google") },
+      "robots.txt" => lambda { svg_value.call("google") },
+
+      # graphql
+      **jsconfig.call("graphql", "graphql"),
+
+      # mocha
+      **jsconfig.call("mocha", "mocha"),
+
+      # next.js
+      "next-env.d.ts" => lambda { svg_value.call("nextjs") },
+      **jsconfig.call("next", "nextjs"),
+
+      # node.js
+      "package.json" => lambda { svg_value.call("nodejs") },
+      "package-lock.json" => lambda { svg_value.call("nodejs") },
+      "yarn.lock" => lambda { svg_value.call("nodejs") },
+      ".yarn-integrity" => lambda { svg_value.call("nodejs") },
+      **jsconfig.call("yarn", "nodejs"),
+
+      # ruby
+      ".gemspec" => lambda { svg_value.call("ruby-2") },
+      "gemfile" => lambda { svg_value.call("ruby-2") },
+      "gemfile.lock" => lambda { svg_value.call("ruby-2") },
+
+      # swift
+      "package.resolved" => lambda { svg_value.call("swift-3") },
+
+      # tailwind css
+      **jsconfig.call("tailwind", "tailwindcss"),
+
+      # typescript
+      "tsconfig.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.app.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.base.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.build.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.debug.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.dev.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.dist.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.prod.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.release.json" => lambda { svg_value.call("typescript-3") },
+      "tsconfig.test.json" => lambda { svg_value.call("typescript-3") },
+
+      # vercel
+      "vercel.json" => lambda { svg_value.call("vercel") },
+
+      # vscode
+      ".vscodeignore" => lambda { svg_value.call("vscode") },
+      ".vscode/settings.json" => lambda { svg_value.call("vscode") },
+
+      # x
+      "x.json" => lambda { svg_value.call("x") },
+      "x.jsonc" => lambda { svg_value.call("x") },
+      "x.json5" => lambda { svg_value.call("x") },
+    },
   }
 
   svg_icons = icons.transform_values do |value|
     if value.is_a?(Hash)
-      value.transform_values(&:call)
+      value.transform_values { |v| v.respond_to?(:call) ? v.call : v }
     else
-      value.call
+      value.respond_to?(:call) ? value.call : value
     end
   end
 
