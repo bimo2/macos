@@ -12,5 +12,13 @@ cli: {
       'cd vsix/dist/facebook && npx @vscode/vsce package',
       'cd vsix/dist/hackerrank && npx @vscode/vsce package'
     ]
+  },
+  git: {
+    d: 'setup git config',
+    zsh: [
+      'git config --global user.name "%GIT_FIRST_NAME% %GIT_LAST_NAME%"',
+      'git config --global user.email "%GIT_EMAIL%"',
+      'git config --global core.editor "nano"'
+    ]
   }
 }
