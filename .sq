@@ -9,7 +9,8 @@ cli: {
     d: 'generate vscode extensions',
     zsh: [
       'cd vsix && rm -rf ./dist && ruby ./generate.rb',
-      'cd vsix/dist/facebook && npx @vscode/vsce package'
+      'cd vsix/dist/facebook && npx @vscode/vsce package',
+      'cd vsix/dist/hackerrank && npx @vscode/vsce package'
     ]
   }
 }
