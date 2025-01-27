@@ -1,23 +1,33 @@
 sq: 0,
 git: 'macos',
 require: [
-  'git'
+  'git',
+  'npx',
+  'ruby'
 ],
 bin: {
+  vsix: {
+    d: 'generate vscode extensions',
+    zsh: [
+      'cd vsix && rm -rf ./dist && ruby ./generate.rb',
+      'cd vsix/dist/facebook && npx @vscode/vsce package',
+      'cd vsix/dist/grok && npx @vscode/vsce package'
+    ]
+  },
   zsh: {
-    info: 'copy zsh config files',
-    run: 'cp -ir zsh/ $HOME'
+    d: 'copy zsh config files',
+    zsh: 'cp -ir zsh/ $HOME'
   },
   git: {
-    info: 'setup git config',
-    run: [
+    d: 'setup git config',
+    zsh: [
       'git config --global user.name "%GIT_FIRST_NAME% %GIT_LAST_NAME%"',
       'git config --global user.email "%GIT_EMAIL%"',
       'git config --global core.editor "nano"'
     ]
   },
   dns: {
-    info: 'setup localhost name',
-    run: 'sudo scutil --set LocalHostName %LOCALHOST%'
+    d: 'setup localhost name',
+    zsh: 'sudo scutil --set LocalHostName %LOCALHOST%'
   }
 }
