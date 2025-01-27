@@ -15,5 +15,9 @@ bin: {
       'git config --global user.email "%GIT_EMAIL%"',
       'git config --global core.editor "nano"'
     ]
+  },
+  dns: {
+    info: 'setup localhost name',
+    run: 'sudo scutil --set LocalHostName %LOCALHOST%'
   }
 }
