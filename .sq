@@ -1,0 +1,11 @@
+sq: 0,
+git: 'macos',
+require: [
+  'git'
+],
+bin: {
+  zsh: {
+    info: 'copy zsh config files',
+    run: 'cp -ir zsh/ $HOME'
+  }
+}
