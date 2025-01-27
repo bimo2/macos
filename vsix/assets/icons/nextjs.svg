@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>nextjs</title>
+    <g id="nextjs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(1, 1)" fill="#000000" fill-rule="nonzero" id="Shape">
+            <path d="M17.1095833,20.1465 C15.3615,21.3170833 13.2595833,22 11,22 C4.92891667,22 0,17.0710833 0,11 C0,4.92891667 4.92891667,0 11,0 C17.0710833,0 22,4.92891667 22,11 C22,14.2844167 20.5571667,17.23425 18.2719167,19.2509167 L8.45075,6.6 L6.6,6.6 L6.6,15.3963333 L8.08041667,15.3963333 L8.08041667,8.48008333 L17.1095833,20.1465 Z M14.05525,12.3245833 L15.5219167,14.2138333 L15.5219167,6.6 L14.05525,6.6 L14.05525,12.3245833 L14.05525,12.3245833 Z"></path>
+        </g>
+    </g>
+</svg>

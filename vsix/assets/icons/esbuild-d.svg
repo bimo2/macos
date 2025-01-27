@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>esbuild-d</title>
+    <g id="esbuild-d" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="esbuild" transform="translate(1, 1)" fill="#FFCF00" fill-rule="nonzero">
+            <path d="M11,0 C4.92486775,0 0,4.92486775 0,11 C0,17.0751322 4.92486775,22 11,22 C17.0751322,22 22,17.0751322 22,11 C22,4.92486775 17.0751322,0 11,0 Z M6.15816667,4.84183333 L12.3163333,11 L6.15816667,17.1581667 L4.29183333,15.2918333 L8.58366667,11 L4.29183333,6.70816667 L6.15816667,4.84183333 Z M12.7581667,4.84183333 L18.9163333,11 L12.7581667,17.1581667 L10.8918333,15.2918333 L15.1836667,11 L10.8918333,6.70816667 L12.7581667,4.84183333 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

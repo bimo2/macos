@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>ruby</title>
+    <g id="ruby" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(0, 3)" fill="#CC0000" fill-rule="nonzero" id="Shape">
+            <path d="M19.475,6.012 L11.987,13.5 L11.987,3.025 L16.487,3.025 L19.475,6.012 Z M23.975,6.012 L11.987,18 L0,6.012 L6.012,0 L18,0 L23.975,6.012 Z M11.987,15.748 L21.727,6.008 L17.227,1.508 L6.747,1.508 L2.247,6.012 L11.987,15.748 Z"></path>
+        </g>
+    </g>
+</svg>
